@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+  <title>View Student</title>
+</head>
+<body>
+<section layout:fragment="header">
+  <h1>
+    Student Details
+    <small>View student information</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a th:href="@{/student/list}">Students</a></li>
+    <li class="active">View Student</li>
+  </ol>
+</section>
+<div layout:fragment="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+
+        <div class="box-body">
+          <!-- Profile Header -->
+          <div class="text-center mb-4">
+            <img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="Student Photo" style="width:150px; height:150px; margin-bottom:20px;"/>
+            <h3 th:text="${student.firstName + ' ' + student.surname}" class="profile-username">Full Name</h3>
+            <p class="text-muted" th:text="${'Registration No: ' + student.regNo}">Reg No</p>
+          </div>
+
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#personal" data-toggle="tab">Personal Details</a></li>
+              <li><a href="#academic" data-toggle="tab">Academic Info</a></li>
+              <li><a href="#contact" data-toggle="tab">Contact Details</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <!-- Personal Details Tab -->
+              <div class="active tab-pane" id="personal">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Full Name</span>
+                        <span class="info-box-number" th:text="${student.firstName + ' ' + student.surname}">Name</span>
+                      </div>
+                    </div>
+                    <div class="info-box">
+                      <span class="info-box-icon bg-green"><i class="fa fa-id-card"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">NIC</span>
+                        <span class="info-box-number" th:text="${student.nic}">NIC</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-yellow"><i class="fa fa-venus-mars"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Gender</span>
+                        <span class="info-box-number" th:text="${student.gender}">Gender</span>
+                      </div>
+                    </div>
+                    <div class="info-box">
+                      <span class="info-box-icon bg-red"><i class="fa fa-graduation-cap"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Batch</span>
+                        <span class="info-box-number" th:text="${student.batch}">Batch</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Academic Info Tab -->
+              <div class="tab-pane" id="academic">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-purple"><i class="fa fa-university"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Faculty</span>
+                        <span class="info-box-number" th:text="${student.faculty}">Faculty</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-maroon"><i class="fa fa-home"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Hostel & Room</span>
+                        <span class="info-box-number" th:text="${'Hostel ' + student.hostelId + ' - Room ' + student.roomId}">Hostel & Room</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Details Tab -->
+              <div class="tab-pane" id="contact">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-blue"><i class="fa fa-envelope"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Email</span>
+                        <span class="info-box-number" th:text="${student.email}">Email</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-teal"><i class="fa fa-phone"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Phone</span>
+                        <span class="info-box-number" th:text="${student.phone}">Phone</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="info-box">
+                      <span class="info-box-icon bg-olive"><i class="fa fa-map-marker"></i></span>
+                      <div class="info-box-content">
+                        <span class="info-box-text">Address</span>
+                        <span class="info-box-number" th:text="${student.addressHomeNo}">Address</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

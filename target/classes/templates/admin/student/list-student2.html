@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<nav th:replace="fragments/header :: nav"></nav>
+
+
+<div id="admin-section">
+    <div class="admin-inner">
+        <div class="container">
+            <div class="d-flex flex-row">
+
+                <!--Admin sidebar-->
+                <div th:replace="fragments/adminSidebar :: admin-sidebar"></div>
+
+                <!--Admin content-->
+                <div id="admin-content">
+                    <div class="row mb-2">
+                        <div class="col-lg-9 d-flex flex-wrap align-content-start">
+                            <!--Search user-->
+                            <div class="row col-lg-12 d-flex flex-nowrap pb-2">
+                                <div class="input-group">
+                                    <select class="custom-select" id="search-user-dropdown"
+                                            onchange="saveSearchParameters(this);">
+                                        <option value="ID">ID</option>
+                                        <option value="Name">Name</option>
+<!--                                        <option value="Surname">Surname</option>-->
+                                        <option value="Email">Email</option>
+                                    </select>
+                                    <input type="text" id="searchUserBar"
+                                           onkeyup='saveSearchParameters(this);'
+                                           placeholder="Search for users.." class="form-control"
+                                           aria-label="Text input with dropdown button">
+                                </div>
+                                <button type="button" class="btn btn-secondary ml-2" onclick="searchUserByProperty()">
+                                    Search
+                                </button>
+                            </div>
+
+                            <div class="row col-lg-12">
+
+                                <table class="table table-striped table-responsive" id="user-table">
+                                    <thead class="thead">
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Surname</th>
+                                        <th>Reg No</th>
+                                        <th>First Name</th>
+                                        <th>Initials</th>
+                                        <th>NIC</th>
+                                        <th>Gender</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Faculty</th>
+                                        <th>Batch</th>
+                                        <th>Address Home No</th>
+                                        <th>Address Street</th>
+                                        <th>Address Locality</th>
+                                        <th>Address City</th>
+                                        <th>Address Postcode</th>
+                                        <th>Hostel ID</th>
+                                        <th>Room ID</th>
+
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="student : ${listStudents}">
+                                        <td th:text="${student.id}">Student ID</td>
+                                        <td th:text="${student.surname}">Surname</td>
+                                        <td th:text="${student.regNo}">Reg No</td>
+                                        <td th:text="${student.firstName}">First Name</td>
+                                        <td th:text="${student.initials}">Initials</td>
+                                        <td th:text="${student.nic}">NIC</td>
+                                        <td th:text="${student.gender}">Gender</td>
+                                        <td th:text="${student.email}">Email</td>
+                                        <td th:text="${student.phone}">Phone</td>
+                                        <td th:text="${student.faculty}">Faculty</td>
+                                        <td th:text="${student.batch}">Batch</td>
+                                        <td th:text="${student.addressHomeNo}">Address Home No</td>
+                                        <td th:text="${student.addressStreet}">Address Street</td>
+                                        <td th:text="${student.addressLocality}">Address Locality</td>
+                                        <td th:text="${student.addressCity}">Address City</td>
+                                        <td th:text="${student.addressPostcode}">Address Postcode</td>
+                                        <td th:text="${student.hostelId}">Hostel ID</td>
+                                        <td th:text="${student.roomId}">Room ID</td>
+                                        <td>
+                                            <a th:href="@{'/student/edit/' + ${student.id}}">Edit</a>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <a th:href="@{'/student/delete/' + ${student.id}}">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div th:replace="fragments/deleteUserModal :: delete-user-modal"></div>
+                        </div>
+
+                        <div class="col-lg-3 pl-0">
+                            <!--Delete success message-->
+                            <div id="alert-messages"></div>
+
+                            <!--Save success message-->
+                            <div th:if="${userHasBeenSaved}" class="alert alert-success alert-dismissible fade show"
+                                 role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Well done!</strong> User has been saved!!!
+                            </div>
+
+                            <!--Update success message-->
+                            <div th:if="${userHasBeenUpdated}" class="alert alert-success alert-dismissible fade show"
+                                 role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Well done!</strong> User has been updated!!!
+                            </div>
+
+                            <!--Number format exception message-->
+                            <div th:if="${numberFormatException}" class="alert alert-danger alert-dismissible fade show"
+                                 role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                Please enter a valid number
+                            </div>
+
+                            <!--No matches found message-->
+                            <div th:if="${noMatches}" class='alert alert-info alert-dismissible fade show' role='alert'>
+                                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                </button>
+                                Sorry, no matches found for <span th:text="${usersProperty}"></span> = <span
+                                    th:text="${propertyValue}"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" th:href="@{/adminPage/users/newUser}">
+                        <button type="button" class="btn btn-primary">New User</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+<div th:replace="fragments/jsScripts :: scripts"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Add / Edit Room</title>
+</head>
+<body>
+<div align="center">
+    <h1>Add / Edit Room</h1>
+    <br />
+    <form action="#" th:action="@{/room/save}" th:object="${room}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Room ID:</td>
+                <td>
+                    <input type="text" th:field="*{id}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Hostel ID:</td>
+                <td>
+                    <input type="text" th:field="*{hostel_id}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Room No:</td>
+                <td>
+                    <input type="text" th:field="*{room_no}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Wing:</td>
+                <td>
+                    <input type="text" th:field="*{wing}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Floor:</td>
+                <td>
+                    <input type="text" th:field="*{floor}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td>
+                    <input type="text" th:field="*{type}" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Capacity: <span>*</span></td>
+                <td>
+                    <input type="text" th:field="*{capacity}" />
+                    <div class="alert alert-warning" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><a th:href="@{/room/list}">
+                    <button type="button">Cancel</button>
+                </a>
+                | <button type="submit">Save</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

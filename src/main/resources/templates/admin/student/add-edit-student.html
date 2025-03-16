@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Student Details</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>
+        Student Detail
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Student Details</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Student Detail</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form th:action="@{/student/save}" th:object="${student}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Student Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  readonly="readonly" th:field="*{id}" placeholder="Student ID">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Surname</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{surname}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Reg No</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{regNo}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('regNo')}" th:errors="*{regNo}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{firstName}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Initials</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{initials}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('initials')}" th:errors="*{initials}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">NIC</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{nic}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('nic')}" th:errors="*{nic}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Gender</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{gender}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{email}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{phone}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Faculty</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{faculty}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('faculty')}" th:errors="*{faculty}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Batch</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{batch}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('batch')}" th:errors="*{batch}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address Home No</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{addressHomeNo}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('addressHomeNo')}" th:errors="*{addressHomeNo}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address Street</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{addressStreet}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('addressStreet')}" th:errors="*{addressStreet}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address Locality</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{addressLocality}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('addressLocality')}" th:errors="*{addressLocality}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address City</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{addressCity}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('addressCity')}" th:errors="*{addressCity}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address Postcode</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{addressPostcode}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('addressPostcode')}" th:errors="*{addressPostcode}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Hostel ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{hostelId}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('hostelId')}" th:errors="*{hostelId}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Room ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{roomId}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('hostelId')}" th:errors="*{roomId}"></p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer center">
+                        <a th:href="@{/student/list}">
+                            <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancel</button>
+                        </a>
+                        <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Save</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="script">
+    <script>
+    </script>
+</th:block>
+
+</body>
+
+</html>

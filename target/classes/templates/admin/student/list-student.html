@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>
+        Students
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Student List</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box-footer center">
+                        <a th:href="@{/student/add}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add new</button>
+                        </a>
+<!--                        <form th:action="@{/student/list}" method="get">-->
+<!--                            <input type="search" th:value="${param.search}" name='search' placeholder="search">-->
+<!--                            <button type="submit">Search</button>-->
+<!--                        </form>-->
+                    </div>
+                    <!--<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">-->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example1_info">
+                                    <thead class="thead">
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Surname</th>
+                                        <th>Reg No</th>
+                                        <th>First Name</th>
+                                        <th>Initials</th>
+                                        <th>NIC</th>
+                                        <th>Gender</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Faculty</th>
+                                        <th>Batch</th>
+                                        <th>Address Home No</th>
+                                        <th>Address Street</th>
+                                        <th>Address Locality</th>
+                                        <th>Address City</th>
+                                        <th>Address Postcode</th>
+                                        <th>Hostel ID</th>
+                                        <th>Room ID</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="student : ${listStudents}">
+                                        <td th:text="${student.id}">student ID</td>
+                                        <td th:text="${student.surname}">Surname</td>
+                                        <td th:text="${student.regNo}">Reg No</td>
+                                        <td th:text="${student.firstName}">First Name</td>
+                                        <td th:text="${student.initials}">Initials</td>
+                                        <td th:text="${student.nic}">NIC</td>
+                                        <td th:text="${student.gender}">Gender</td>
+                                        <td th:text="${student.email}">Email</td>
+                                        <td th:text="${student.phone}">Phone</td>
+                                        <td th:text="${student.faculty}">Faculty</td>
+                                        <td th:text="${student.batch}">Batch</td>
+                                        <td th:text="${student.addressHomeNo}">Address Home No</td>
+                                        <td th:text="${student.addressStreet}">Address Street</td>
+                                        <td th:text="${student.addressLocality}">Address Locality</td>
+                                        <td th:text="${student.addressCity}">Address City</td>
+                                        <td th:text="${student.addressPostcode}">Address Postcode</td>
+                                        <td th:text="${student.hostelId}">Hostel ID</td>
+                                        <td th:text="${student.roomId}">Room ID</td>
+
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/student/edit/' + ${student.id}}"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs purple deleteView" title="Delete" th:href="@{'/student/delete/' + ${student.id}}"><i class="fa fa-trash-o"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <!--</div>-->
+
+                    <!--<div class="dataTables_paginate paging_bootstrap">
+                        <ul th:if="${listProducts.totalPages > 0}" th:each="pageNumber : ${pageNumbers}"  class="pagination">
+                            <li th:class="${pageNumber==listProducts.number + 1} ? active">
+                                <a th:href="@{/product/list(search=${param.search},size=${listProducts.size}, page=${pageNumber})}"
+                                   th:text=${pageNumber}>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>-->
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+
+
+<th:block layout:fragment="script">
+ <script>
+      $(function () {
+
+        $('#example1').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : true,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+        })
+
+        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+      })
+
+
+</script>
+</th:block>
+</body>
+
+</html>

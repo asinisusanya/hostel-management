@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>
+        Rooms
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Room List</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box-footer center">
+                        <a th:href="@{/room/add}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add new</button>
+                        </a>
+                        <!--<form th:action="@{/product/list}" method="get">
+                            <input type="search" th:value="${param.search}" name='search' placeholder="search">
+                            <button type="submit">Search</button>
+                        </form>-->
+                    </div>
+                    <!--<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">-->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example1_info">
+                                    <thead class="thead">
+                                    <tr>
+                                        <th>Room ID</th>
+                                        <th>Hostel ID</th>
+                                        <th>Room No</th>
+                                        <th>Wing</th>
+                                        <th>Floor</th>
+                                        <th>Type</th>
+                                        <th>Capacity</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="room : ${listRooms}">
+                                        <td th:text="${room.id}">Room ID</td>
+                                        <td th:text="${room.hostel_id}">Hostel ID</td>
+                                        <td th:text="${room.room_no}">Room No</td>
+                                        <td th:text="${room.wing}">Wing</td>
+                                        <td th:text="${room.floor}">Floor</td>
+                                        <td th:text="${room.room_no}">Type</td>
+                                        <td th:text="${room.capacity}">Capacity</td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/room/edit/' + ${room.id}}"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="#" class="btn btn-danger btn-xs purple deleteView" title="Delete" th:href="@{'/room/delete/' + ${room.id}}"><i class="fa fa-trash-o"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <!--</div>-->
+
+                    <!--<div class="dataTables_paginate paging_bootstrap">
+                        <ul th:if="${listProducts.totalPages > 0}" th:each="pageNumber : ${pageNumbers}"  class="pagination">
+                            <li th:class="${pageNumber==listProducts.number + 1} ? active">
+                                <a th:href="@{/product/list(search=${param.search},size=${listProducts.size}, page=${pageNumber})}"
+                                   th:text=${pageNumber}>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>-->
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+
+
+<th:block layout:fragment="script">
+ <script>
+      $(function () {
+
+        $('#example1').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : true,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+        })
+
+        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+      })
+
+
+</script>
+</th:block>
+</body>
+
+</html>

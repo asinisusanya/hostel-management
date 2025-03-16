@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>Room Details</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>
+        Room Detail
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Room Details</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Room Detail</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form th:action="@{/room/save}" th:object="${room}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Room Id</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  readonly="readonly" th:field="*{id}" placeholder="Product ID">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Hostel ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{hostel_id}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('hostel_id')}" th:errors="*{hostel_id}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Room No</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{room_no}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('room_no')}" th:errors="*{room_no}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Wing</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{wing}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('wing')}" th:errors="*{wing}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Floor</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{floor}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('floor')}" th:errors="*{floor}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Type</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{type}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Capacity</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  th:field="*{capacity}" />
+                                <p class="text-red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer center">
+                        <a th:href="@{/room/list}">
+                            <button type="button" class="btn btn-default"><i class="fa fa-right"></i> Cancel</button>
+                        </a>
+                        <button type="submit" class="btn btn-info pull-right"><i class="fa fa-save"></i> Save</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="script">
+    <script>
+    </script>
+</th:block>
+
+</body>
+
+</html>
